@@ -37,14 +37,19 @@
 
     <header slot="header">
       <div class="wa-split">
-        <div class="wa-cluster">
-          <%= image_tag("merck_logo.png", size: "50") %>
-          <span class="wa-body-xl wa-font-weight-bold" style="--wa-font-weight-bold;">Clapback</span>
-        </div>
-        <div class="wa-cluster">
-          <wa-button>Sign Up</wa-button>
-          <wa-button appearance="outlined">Log In</wa-button>
-        </div>
+        <%= link_to root_path do %>
+          <div class="wa-cluster">
+            <%= image_tag("merck_logo.png", size: "50") %>
+            <span class="wa-body-xl wa-font-weight-bold" style="--wa-font-weight-bold;">Clapback</span>
+          </div>
+        <% end %>
+        <nav>
+          <div class="wa-cluster">
+            <%= link_to "Hello, #{Current.user.nickname}", edit_user_path(Current.user) if authenticated? %>
+            <%= link_to "Login", new_session_path unless authenticated? %>
+            <%= link_to "Log out", session_path, data: { turbo_method: :delete } if authenticated? %>
+          </div>
+        </nav>
       </div>
     </header>
 
