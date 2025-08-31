@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html class="wa-theme-glossy wa-palette-elegant wa-brand-indigo">
+  <head>
+    <title><%= content_for(:title) || "Clapback" %></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= yield :head %>
+
+    <%# Enable PWA manifest for installable apps (make sure to enable in config/routes.rb too!) %>
+    <%#= tag.link rel: "manifest", href: pwa_manifest_path(format: :json) %>
+
+    <link rel="icon" href="/icon.png" type="image/png">
+    <link rel="icon" href="/icon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/icon.png">
+
+    <%# Includes all stylesheet files in app/assets/stylesheets %>
+    <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+
+    <%# Web Awesome %>
+
+    <link rel="stylesheet" href="https://early.webawesome.com/webawesome@3.0.0-beta.4/dist/styles/webawesome.css" />
+    <link rel="stylesheet" href="https://early.webawesome.com/webawesome@3.0.0-beta.4/dist/styles/themes/glossy.css" />
+    <script type="module" src="https://early.webawesome.com/webawesome@3.0.0-beta.4/dist/webawesome.loader.js"></script>
+
+    <%# Font Awesome kit %>
+    <script src="https://kit.fontawesome.com/dc8a27351f.js" crossorigin="anonymous"></script>
+  </head>
+
+  <body>
+
+  <wa-page class="wa-light">
+
+    <header slot="header">
+      <div class="wa-split">
+        <div class="wa-cluster">
+          <%= image_tag("merck_logo.png", size: "50") %>
+          <span class="wa-body-xl wa-font-weight-bold" style="--wa-font-weight-bold;">Clapback</span>
+        </div>
+        <div class="wa-cluster">
+          <wa-button>Sign Up</wa-button>
+          <wa-button appearance="outlined">Log In</wa-button>
+        </div>
+      </div>
+    </header>
+
+    <nav slot="navigation">
+    </nav>
+
+    <main>
+      <%= yield %>
+    </main>
+
+    <div slot="footer">
+    </div>
+
+  </wa-page>
+
+
+  </body>
+</html>
