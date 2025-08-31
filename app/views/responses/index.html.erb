@@ -6,9 +6,8 @@
 
 <div id="responses">
   <% @responses.each do |response| %>
-    <%= render response %>
     <p>
-      <%= link_to "Show this response", response %>
+      <%= link_to response.question, response %>
     </p>
   <% end %>
 </div>

@@ -54,13 +54,15 @@
     </header>
 
     <nav slot="navigation">
+      <%= link_to "Browse Responses", responses_path %>
     </nav>
 
     <main>
       <%= yield %>
     </main>
 
-    <div slot="footer">
+    <div slot="footer" style="display: flex; justify-content: center;">
+      <span class="wa-body-l">Made with <i class="fa-solid fa-heart" style="color: #f61404;"></i> by <%= link_to "MRL IT", "https://mrlit.merck.com" %></span>
     </div>
 
   </wa-page>
