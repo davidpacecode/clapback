@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_08_31_223558) do
+ActiveRecord::Schema[8.0].define(version: 2025_09_02_012318) do
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
     t.text "body"
@@ -53,6 +53,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_31_223558) do
     t.string "model_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_id", null: false
+    t.index ["user_id"], name: "index_chats_on_user_id"
   end
 
   create_table "messages", force: :cascade do |t|
@@ -125,11 +127,15 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_31_223558) do
     t.datetime "updated_at", null: false
     t.string "role", default: "member"
     t.string "nickname"
+    t.string "first_name"
+    t.string "last_name"
+    t.string "name"
     t.index ["email_address"], name: "index_users_on_email_address", unique: true
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "chats", "users"
   add_foreign_key "messages", "chats"
   add_foreign_key "sessions", "users"
   add_foreign_key "tool_calls", "messages"

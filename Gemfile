@@ -52,6 +52,9 @@ group :development, :test do
 
   # Hotwire spark for live reloads
   gem "hotwire-spark"
+
+  # dotenv-rails for dev and test so that anthropic key works in irb (among other stuff, i assume)
+  gem "dotenv-rails"
 end
 
 group :development do

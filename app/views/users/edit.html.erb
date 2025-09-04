@@ -3,6 +3,16 @@
 
   <%= form_with model: @user, url: user_path, local: true do |f| %>
     <div class="mb-4">
+      <%= f.label :first_name, class: "block mb-2" %>
+      <%= f.text_field :first_name, class: "input input-bordered w-full" %>
+    </div>
+
+    <div class="mb-4">
+      <%= f.label :last_name, class: "block mb-2" %>
+      <%= f.text_field :last_name, class: "input input-bordered w-full" %>
+    </div>
+
+    <div class="mb-4">
       <%= f.label :email_address, class: "block mb-2" %>
       <%= f.email_field :email_address, class: "input input-bordered w-full" %>
     </div>
