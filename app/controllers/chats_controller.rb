@@ -5,7 +5,8 @@ class ChatsController < ApplicationController
 
   def create
     @chat = Current.user.chats.create!
-    @response = @chat.ask(params[:content])
+    user_message = params[:chat][:content] # Note: params[:chat][:content] not params[:content]
+    @response = @chat.ask(user_message)
     redirect_to @chat
   end
 
