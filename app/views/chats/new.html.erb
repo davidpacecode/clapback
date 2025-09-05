@@ -1,31 +1,69 @@
-<!-- app/views/chats/new.html.erb -->
-<% content_for :title, "New Chat" %>
+  <!-- app/views/chats/new.html.erb -->
+  <% content_for :title, "New Chat" %>
 
-<div class="wa-container">
-  <h1>Start a New Conversation</h1>
-  
-  <%= form_with model: [@chat], local: false do |form| %>
-    <div class="mb-4">
-      <%= form.label :model_id, "Choose Model", class: "block mb-2" %>
-      <%= form.select :model_id, 
-          options_for_select([
-            ["Claude Sonnet 4", "claude-sonnet-4-20250514"],
-            ["Claude Haiku", "claude-haiku-3-20250109"]
-          ]), 
-          { prompt: "Select a model" }, 
-          { class: "wa-input" } %>
-    </div>
+  <div class="wa-container">
+    <h1>Start a New Conversation</h1>
     
-    <div class="mb-4">
-      <%= form.fields_for :messages, @message do |message_form| %>
-        <%= message_form.label :content, "Your Message", class: "block mb-2" %>
-        <%= message_form.text_area :content, 
+    <%= form_with model: [@chat], local: false do |form| %>
+      
+      <div class="mb-4">
+        <%= form.label :content, "Your Message", class: "block mb-2" %>
+        <%= form.text_area :content, 
             placeholder: "Ask me anything...", 
             class: "wa-textarea", 
             rows: 4 %>
-      <% end %>
-    </div>
+      </div>
+      
+      <%= form.submit "Start Chat", class: "wa-button wa-button--primary" %>
+    <% end %>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<% if false %>
+  <!-- app/views/chats/new.html.erb -->
+  <% content_for :title, "New Chat" %>
+
+  <div class="wa-container">
+    <h1>Start a New Conversation</h1>
     
-    <%= form.submit "Start Chat", class: "wa-button wa-button--primary" %>
-  <% end %>
-</div>
+    <%= form_with model: [@chat], local: false do |form| %>
+      <div class="mb-4">
+        <%= form.label :model_id, "Choose Model", class: "block mb-2" %>
+        <%= form.select :model_id, 
+            options_for_select([
+              ["Claude Sonnet 4", "claude-sonnet-4-20250514"],
+              ["Claude Haiku", "claude-haiku-3-20250109"]
+            ]), 
+            { prompt: "Select a model" }, 
+            { class: "wa-input" } %>
+      </div>
+      
+      <div class="mb-4">
+        <%= form.fields_for :messages, @message do |message_form| %>
+          <%= message_form.label :content, "Your Message", class: "block mb-2" %>
+          <%= message_form.text_area :content, 
+              placeholder: "Ask me anything...", 
+              class: "wa-textarea", 
+              rows: 4 %>
+        <% end %>
+      </div>
+      
+      <%= form.submit "Start Chat", class: "wa-button wa-button--primary" %>
+    <% end %>
+  </div>
+<% end %>
