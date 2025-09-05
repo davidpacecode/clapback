@@ -1,18 +1,20 @@
 class ChatsController < ApplicationController
   def new
     @chat = Chat.new
-    @message = Message.new
+    @chat.messages.build # Build the first message
   end
 
   def create
     @chat = Current.user.chats.build(chat_params)
 
-  if @chat.save
-    redirect_to @chat
-  else
-    @message = Message.new
-    render :new, status: :unproccessable_entity
-  end
+    if @chat.save
+      first_message = @chat.messages.first
+      ProcessMessageJob.perform_later(first_message) if first_message
+      redirect_to @chat
+    else
+      @message = Message.new
+      render :new, status: :unproccessable_entity
+    end
   end
 
   def show
