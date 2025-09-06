@@ -1,18 +1,24 @@
-  <h1>Chat <%= @chat.id %></h1>
-  <div id="messages">
-  <%= @response.content %>
-
-  <%= form_with model: [@chat], local: false do |form| %>
-    <div class="mb-4">
-      <%= form.label :content, "Your Message", class: "block mb-2" %>
-      <%= form.text_area :content, 
-          placeholder: "Ask me anything...", 
-          class: "wa-textarea", 
-          rows: 4 %>
+<h1>Chat <%= @chat.id %></h1>
+<div id="messages">
+  <% @chat.messages.each do |message| %>
+    <div class="message message-<%= message.role %>">
+      <strong><%= message.role.capitalize %>:</strong>
+      <p><%= simple_format(message.content) %></p>
     </div>
+  <% end %>
+</div>
 
-    <%= form.submit "Start Chat", class: "wa-button wa-button--primary" %>
-  <% end %>  
+<%= form_with model: [@chat], local: false do |form| %>
+  <div class="mb-4">
+    <%= form.label :content, "Your Message", class: "block mb-2" %>
+    <%= form.text_area :content, 
+        placeholder: "Ask me anything...", 
+        class: "wa-textarea", 
+        rows: 4 %>
+  </div>
+
+  <%= form.submit "What next, mofo?", class: "wa-button wa-button--primary" %>
+<% end %>  
 
 
 
