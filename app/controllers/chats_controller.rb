@@ -1,6 +1,6 @@
 class ChatsController < ApplicationController
   def new
-  @chat = Chat.new
+    @chat = Chat.new
   end
 
   def create
@@ -12,6 +12,12 @@ class ChatsController < ApplicationController
 
   def show
     @chat = Current.user.chats.find(params[:id])
+  end
+
+ private
+
+  def chat_params
+    params.require(:chat).permit(:content)
   end
 end
 
