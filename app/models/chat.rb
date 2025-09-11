@@ -13,11 +13,11 @@ class Chat < ApplicationRecord
       "Document #{doc[:metadata][:id]}:\nQuestion: #{doc[:metadata][:question]}\nCategory: #{doc[:metadata][:category]}\nContent: #{doc[:content]}\n\n"
     end.join
 
-    # Pass messages as a keyword argument
-    complete(
-      user_message,
-      system_message: "You are a helpful assistant. Use the following context documents to answer questions:\n\n#{formatted_context}"
-    )
+    # Create the enhanced user message with context
+    enhanced_message = "Context:\n#{formatted_context}\n\nUser Question: #{user_message}"
+
+    # Use the simple ask method with the enhanced message
+    ask(enhanced_message)
   end
 
   private
