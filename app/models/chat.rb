@@ -5,6 +5,22 @@ class Chat < ApplicationRecord
 
   broadcasts_to ->(chat) { [ chat, "messages" ] }
 
+  def ask_with_context(user_message)
+    context = build_context_from_responses
+
+    complete(
+      messages: [
+        {
+          role: "system",
+          content: "You are a helpful assistant. Use the following context documents to answer questions:\n\n#{format_context(context)}"
+        },
+        {
+          role: "user",
+          content: user_message
+        }
+      ]
+    )
+  end
 
   def build_context_from_responses
     context_docs = []
