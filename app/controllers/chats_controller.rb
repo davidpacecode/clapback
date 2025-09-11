@@ -40,16 +40,16 @@ class ChatsController < ApplicationController
     )
   end
 
-  private
-
-  def chat_params
-    params.require(:chat).permit(:content)
-  end
-
   def format_context(context_docs)
     context_docs.map do |doc|
       "Document #{doc[:metadata][:id]}:\nQuestion: #{doc[:metadata][:question]}\nCategory: #{doc[:metadata][:category]}\nContent: #{doc[:content]}\n\n"
     end.join
+  end
+
+  private
+
+  def chat_params
+    params.require(:chat).permit(:content)
   end
 end
 
