@@ -6,7 +6,8 @@ class ChatsController < ApplicationController
   def create
     @chat = Current.user.chats.create!
     user_message = params[:chat][:content] # Note: params[:chat][:content] not params[:content]
-    @response = @chat.ask(user_message)
+    # @response = @chat.ask(user_message)
+    @response = @chat.ask_with_context(user_message)
     redirect_to @chat
   end
 
@@ -14,13 +15,43 @@ class ChatsController < ApplicationController
     @chat = Current.user.chats.find(params[:id])
   end
 
- private
+  def update
+    @chat = Current.user.chats.find(params[:id])
+    user_message = params[:chat][:content]
+    # @response = @chat.ask(user_message)
+    @response = @chat.ask_with_context(user_message)
+    redirect_to @chat
+  end
+
+  def ask_with_context(user_message)
+    context = build_context_from_responses
+
+    chat.complete(
+      messages: [
+        {
+          role: "system",
+          content: "You are a helpful assistant. Use the following context documents to answer questions:\n\n#{format_context(context)}"
+        },
+        {
+          role: "user",
+          content: user_message
+        }
+      ]
+    )
+  end
+
+  private
 
   def chat_params
     params.require(:chat).permit(:content)
   end
-end
 
+  def format_context(context_docs)
+    context_docs.map do |doc|
+      "Document #{doc[:metadata][:id]}:\nQuestion: #{doc[:metadata][:question]}\nCategory: #{doc[:metadata][:category]}\nContent: #{doc[:content]}\n\n"
+    end.join
+  end
+end
 
 #  def new
 #    @chat = Chat.new
