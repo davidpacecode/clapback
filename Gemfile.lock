@@ -339,7 +339,7 @@ GEM
     ruby-vips (2.2.5)
       ffi (~> 1.12)
       logger
-    ruby_llm (1.6.4)
+    ruby_llm (1.7.1)
       base64
       event_stream_parser (~> 1)
       faraday (>= 1.10.0)
@@ -450,7 +450,7 @@ DEPENDENCIES
   rails (~> 8.0.2, >= 8.0.2.1)
   reactionview (~> 0.1.2)
   rubocop-rails-omakase
-  ruby_llm (~> 1.6)
+  ruby_llm (~> 1.7)
   selenium-webdriver
   solid_cable
   solid_cache
