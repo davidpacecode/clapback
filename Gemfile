@@ -69,3 +69,5 @@ group :test do
 end
 
 gem "ruby_llm", "~> 1.6"
+
+gem "reactionview", "~> 0.1.2"

@@ -1,11 +1,15 @@
 <h1>Chat <%= @chat.id %></h1>
-<div id="messages">
-  <% @chat.messages.each do |message| %>
-    <div class="message message-<%= message.role %>">
-      <strong><%= message.role.capitalize %>:</strong>
-      <p><%= simple_format(message.content) %></p>
+
+<div class="wa-stack" style="max-width: 45ch; margin: 0 auto;">
+  <div class="wa-stack">
+    <div id="messages">
+      <% @chat.messages.each do |message| %>
+        <div class="message message-<%= message.role %>">
+          <%= render "message_card", message: message %>
+        </div>
+      <% end %>
     </div>
-  <% end %>
+  </div>
 </div>
 
 <%= form_with model: [@chat], local: false do |form| %>
@@ -17,5 +21,5 @@
         rows: 4 %>
   </div>
 
-  <%= form.submit "What next, mofo?", class: "wa-button wa-button--primary" %>
+  <%= form.submit "Submit", class: "wa-button wa-button--primary" %>
 <% end %>  

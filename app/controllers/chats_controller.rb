@@ -23,6 +23,10 @@ class ChatsController < ApplicationController
     redirect_to @chat
   end
 
+  def index
+    @chats = Current.user.chats.all
+  end
+
   private
 
   def chat_params

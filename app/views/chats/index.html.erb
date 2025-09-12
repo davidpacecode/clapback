@@ -1,0 +1,6 @@
+<h1>All of your Chats </h1>
+
+<%= @chats.each do |chat| %>
+  <%= link_to chat.id, chat %>
+  <%= tag.br %>
+<% end %>

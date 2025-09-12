@@ -1,0 +1,11 @@
+<wa-card>
+  <div class="wa-flank">
+    <wa-avatar label="Avatar with an image icon">
+      <wa-icon slot="icon" name="<%= message.role == "user" ? "person" : "robot" %>" variant="solid"></wa-icon>
+    </wa-avatar>
+    <div class="wa-stack wa-gap-0">
+      <span class="wa-heading-s"><strong><%= message.role.capitalize %></strong></span>
+      <p><%= simple_format(message.display_content) %></p>
+    </div>
+  </div>
+</wa-card>
