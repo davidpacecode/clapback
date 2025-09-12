@@ -68,6 +68,6 @@ group :test do
   gem "selenium-webdriver"
 end
 
-gem "ruby_llm", "~> 1.6"
+gem "ruby_llm", "~> 1.7"
 
 gem "reactionview", "~> 0.1.2"
