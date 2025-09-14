@@ -4,7 +4,9 @@
       <wa-icon slot="icon" name="<%= message.role == "user" ? "person" : "robot" %>" variant="solid"></wa-icon>
     </wa-avatar>
     <div class="wa-stack wa-gap-0">
-      <span class="wa-heading-s"><strong><%= message.role.capitalize %></strong></span>
+      <span class="wa-heading-s">
+        <strong><%= message.role == "user" ? Current.user.nickname : "Friendly Clapback Robot" %></strong>
+      </span>
       <p><%= simple_format(message.display_content) %></p>
     </div>
   </div>
