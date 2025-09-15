@@ -6,7 +6,7 @@ class Chat < ApplicationRecord
   broadcasts_to ->(chat) { [ chat, "messages" ] }
 
   def ask_with_context(user_message)
-    context = build_context_from_responses
+    context = build_context_from_messaging
 
     # Format the context directly here
     formatted_context = context.map do |doc|
@@ -22,23 +22,23 @@ class Chat < ApplicationRecord
 
   private
 
-  def build_context_from_responses
+  def build_context_from_messaging
     context_docs = []
 
-    Response.includes(:rich_text_response).each do |response|
+    Topic.includes(:rich_text_messaging).each do |topic|
       # Skip if no rich text content
-      next unless response.response.present?
+      next unless topic.messaging.present?
 
-      content = response.response.to_plain_text&.strip
+      content = topic.messaging.to_plain_text&.strip
       next if content.blank?
 
       context_docs << {
         content: content,
         metadata: {
-          id: response.id,
-          question: response.question || "No question",
-          category: response.category || "Uncategorized",
-          tags: response.tag_list || []
+          id: topic.id,
+          question: topic.question || "No question",
+          category: topic.category || "Uncategorized",
+          tags: topic.tag_list || []
         }
       }
     end

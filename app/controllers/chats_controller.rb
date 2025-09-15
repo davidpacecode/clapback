@@ -6,8 +6,8 @@ class ChatsController < ApplicationController
   def create
     @chat = Current.user.chats.create!
     user_message = params[:chat][:content] # Note: params[:chat][:content] not params[:content]
-    # @response = @chat.ask(user_message)
-    @response = @chat.ask_with_context(user_message)
+    # @topic = @chat.ask(user_message)
+    @topic = @chat.ask_with_context(user_message)
     redirect_to @chat
   end
 
@@ -18,8 +18,8 @@ class ChatsController < ApplicationController
   def update
     @chat = Current.user.chats.find(params[:id])
     user_message = params[:chat][:content]
-    # @response = @chat.ask(user_message)
-    @response = @chat.ask_with_context(user_message)
+    # @topic = @chat.ask(user_message)
+    @topic = @chat.ask_with_context(user_message)
     redirect_to @chat
   end
 

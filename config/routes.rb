@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resource :session
   resources :passwords, param: :token
-  resources :responses
+  resources :topics
   resources :users
 
   resources :chats do

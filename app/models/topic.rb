@@ -1,5 +1,5 @@
-class Response < ApplicationRecord
-  has_rich_text :response  # Use Action Text for formatting
+class Topic < ApplicationRecord
+  has_rich_text :messaging  # Use Action Text for formatting
   has_one_attached :attachment  # Active Storage for PDFs
 
   def tag_list

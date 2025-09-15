@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_09_02_012318) do
+ActiveRecord::Schema[8.0].define(version: 2025_09_15_034351) do
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
     t.text "body"
@@ -91,15 +91,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_02_012318) do
     t.index ["provider"], name: "index_models_on_provider"
   end
 
-  create_table "responses", force: :cascade do |t|
-    t.text "question"
-    t.text "response"
-    t.text "tags"
-    t.string "category"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "sessions", force: :cascade do |t|
     t.integer "user_id", null: false
     t.string "ip_address"
@@ -118,6 +109,15 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_02_012318) do
     t.datetime "updated_at", null: false
     t.index ["message_id"], name: "index_tool_calls_on_message_id"
     t.index ["tool_call_id"], name: "index_tool_calls_on_tool_call_id"
+  end
+
+  create_table "topics", force: :cascade do |t|
+    t.text "question"
+    t.text "messaging"
+    t.text "tags"
+    t.string "category"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
