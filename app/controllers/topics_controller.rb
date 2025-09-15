@@ -37,7 +37,7 @@ class TopicsController < ApplicationController
   # PATCH/PUT /topics/1 or /topics/1.json
   def update
     respond_to do |format|
-      if @topic.update(topic)
+      if @topic.update(topic_params)
         format.html { redirect_to @topic, notice: "Topic was successfully updated.", status: :see_other }
         format.json { render :show, status: :ok, location: @topic }
       else
