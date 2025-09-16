@@ -2,16 +2,23 @@
 
 <% content_for :title, "Topics" %>
 
-<h1>Topics</h1>
-
-<div id="topics">
-  <% @topics.each do |topic| %>
-    <p>
-      <%= link_to topic.question, topic %>
-    </p>
-  <% end %>
+<div class="wa-stack">
+  <h2>Merck Perspectives</h2>
+  <div id="topics">
+    <% @topics.each do |topic| %>
+      <wa-details appearance="plain">
+        <h3 slot="summary" class="wa-heading-m" style="margin: 0"><%= topic.question %></h3>
+        <%= topic.messaging.to_plain_text&.first(200) %>
+        <%= link_to "More...", topic %>
+      </wa-details>
+      <wa-divider></wa-divider>
+    <% end %>
+  </div>
 </div>
+
 
 <%= tag.br %>
 
 <%= button_to "Create new topic", new_topic_path, method: :get %>
+
+
