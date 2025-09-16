@@ -9,6 +9,7 @@
       <wa-details appearance="plain">
         <h3 slot="summary" class="wa-heading-m" style="margin: 0"><%= topic.question %></h3>
         <%= topic.messaging.to_plain_text&.first(200) %>
+        <%= tag.br %>
         <%= link_to "More...", topic %>
       </wa-details>
       <wa-divider></wa-divider>

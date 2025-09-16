@@ -7,7 +7,7 @@ class UsersController < ApplicationController
     @user = Current.user
 
     if @user.update(user_params)
-      redirect_to responses_path, notice: "Profile updated successfully!"
+      redirect_to topics_path, notice: "Profile updated successfully!"
     else
       render :edit, status: :unprocessable_entity
     end
