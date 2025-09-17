@@ -3,8 +3,12 @@
 <%= render @topic %>
 
 <div>
+  <%= tag.br %>
   <%= link_to "Edit this topic", edit_topic_path(@topic) %> |
   <%= link_to "Back to topics", topics_path %>
+  <% 2.times do %>
+    <%= tag.br %>
+  <% end %>
 
   <%= button_to "Destroy this topic", @topic, method: :delete %>
 </div>

@@ -1,4 +1,34 @@
 <div id="<%= dom_id topic %>">
+
+  <div class="wa-stack">
+    <h3 class="wa-heading-m">Topic Info</h3>
+    <p class="wa-caption-m">Details about our Company's perspective</p>
+    <wa-divider></wa-divider>
+    <dl class="wa-stack wa-gap-2xl">
+      <div class="wa-flank" style="--flank-size: 20ch;">
+        <dt>Topic</dt>
+        <dd><%= topic.question %></dd>
+      </div>
+      <div class="wa-flank" style="--flank-size: 20ch;">
+        <dt>Category</dt>
+        <dd><%= topic.category %></dd>
+      </div>
+      <div class="wa-flank" style="--flank-size: 20ch;">
+        <dt>Tags</dt>
+        <dd><%= topic.tags %></dd>
+      </div>
+      <div class="wa-flank wa-align-items-start" style="--flank-size: 20ch;">
+        <dt>Approved Messaging</dt>
+        <dd>
+          <%= topic.messaging %>
+        </dd>
+      </div>
+    </dl>
+  </div>
+</div>
+
+<% if false %>
+<div id="<%= dom_id topic %>">
   <p>
     <strong>Question:</strong>
     <%= topic.question %>
@@ -20,3 +50,4 @@
   </p>
 
 </div>
+<% end %>

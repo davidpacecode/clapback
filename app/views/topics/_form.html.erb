@@ -11,6 +11,36 @@
     </div>
   <% end %>
 
+  <div class="wa-stack">
+    <h3 class="wa-heading-m">Topic Info</h3>
+    <p class="wa-caption-m">Details about our Company's perspective</p>
+    <wa-divider></wa-divider>
+    <dl class="wa-stack wa-gap-2xl">
+      <div class="wa-flank" style="--flank-size: 20ch;">
+        <dt><%= form.label :question, style: "display: block" %></dt>
+        <dd><%= form.text_field :question %></dd>
+      </div>
+      <div class="wa-flank wa-align-items-start" style="--flank-size: 20ch;">
+        <dt><%= form.label :category, style: "display: block" %></dt>
+        <dd>
+          <%= form.text_field :category %>
+        </dd>
+      </div>
+      <div class="wa-flank" style="--flank-size: 20ch;">
+        <dt><%= form.label :tags, style: "display: block" %></dt>
+        <dd><%= form.text_field :category %></dd>
+      </div>
+      <div class="wa-flank" style="--flank-size: 20ch;">
+        <dt><%= form.label :messaging, style: "display: block" %></dt>
+        <dd><%= form.rich_text_area :messaging %></dd>
+      </div>
+      <%= tag.br %>
+      <%= form.submit "Save" %>
+    </dl>
+  </div>
+<% end %>
+
+<% if false %>
   <div>
     <%= form.label :question, style: "display: block" %>
     <%= form.textarea :question %>
