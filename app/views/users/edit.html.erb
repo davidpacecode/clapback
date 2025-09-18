@@ -2,34 +2,42 @@
   <h1 class="text-2xl font-bold mb-4">Edit Profile</h1>
 
   <%= form_with model: @user, url: user_path, local: true do |f| %>
-    <div class="mb-4">
-      <%= f.label :first_name, class: "block mb-2" %>
-      <%= f.text_field :first_name, class: "input input-bordered w-full" %>
+
+    <div class="wa-stack">
+      <h3 class="wa-heading-m">Update your information</h3>
+      <wa-divider></wa-divider>
+      <dl class="wa-stack wa-gap-2xl">
+        <div class="wa-flank" style="--flank-size: 20ch;">
+          <dt><%= f.label :first_name, class: "block mb-2" %></dt>
+          <dd><%= f.text_field :first_name, class: "input input-bordered w-full" %></dd>
+        </div>
+        <div class="wa-flank" style="--flank-size: 20ch;">
+          <dt><%= f.label :last_name, class: "block mb-2" %></dt>
+          <dd><%= f.text_field :last_name, class: "input input-bordered w-full" %></dd>
+        </div>
+        <div class="wa-flank" style="--flank-size: 20ch;">
+          <dt><%= f.label :email_address, class: "block mb-2" %></dt>
+          <dd><%= f.email_field :email_address, class: "input input-bordered w-full" %></dd>
+        </div>
+        <div class="wa-flank" style="--flank-size: 20ch;">
+          <dt><%= f.label :nickname, class: "block mb-2" %></dt>
+          <dd><%= f.text_field :nickname, class: "input input-bordered w-full" %></dd>
+        </div>
+        <div class="wa-flank" style="--flank-size: 20ch;">
+          <dt><%= f.label :role, class: "block mb-2" %></dt>
+          <dd><%= f.select :role, [["Member", "member"], ["Admin", "admin"]], {}, 
+            { class: "select select-bordered w-full" } %>
+          </dd>
+        </div>
+      </dl>
     </div>
 
-    <div class="mb-4">
-      <%= f.label :last_name, class: "block mb-2" %>
-      <%= f.text_field :last_name, class: "input input-bordered w-full" %>
-    </div>
-
-    <div class="mb-4">
-      <%= f.label :email_address, class: "block mb-2" %>
-      <%= f.email_field :email_address, class: "input input-bordered w-full" %>
-    </div>
-
-    <div class="mb-4">
-      <%= f.label :nickname, class: "block mb-2" %>
-      <%= f.text_field :nickname, class: "input input-bordered w-full" %>
-    </div>
-
-    <div class="mb-4">
-      <%= f.label :role, class: "block mb-2" %>
-      <%= f.select :role, [["Member", "member"], ["Admin", "admin"]], {}, 
-          { class: "select select-bordered w-full" } %>
-    </div>
-
+    <%= tag.br %>
+    <%= tag.br %>
     <%= f.submit "Update Profile", class: "btn btn-primary" %>
   <% end %>
 
+  <%= tag.br %>
   <%= link_to "Back", topics_path, class: "btn btn-ghost ml-2" %>
+
 </div>
