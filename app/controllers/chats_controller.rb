@@ -8,6 +8,7 @@ class ChatsController < ApplicationController
     user_message = params[:chat][:content] # Note: params[:chat][:content] not params[:content]
     # @topic = @chat.ask(user_message)
     @topic = @chat.ask_with_context(user_message)
+    @chat.set_name_from_first_message! # Auto-set name
     redirect_to @chat
   end
 

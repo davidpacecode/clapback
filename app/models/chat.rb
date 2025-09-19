@@ -5,6 +5,30 @@ class Chat < ApplicationRecord
 
   broadcasts_to ->(chat) { [ chat, "messages" ] }
 
+  # Auto-generate name from first message if not set
+  def display_name
+    return name if name.present?
+
+    first_user_message = messages.where(role: "user").first
+    if first_user_message&.content.present?
+      # Take first 50 characters and add ellipsis if longer
+      content = first_user_message.content.strip
+      content.length > 50 ? "#{content[0..47]}..." : content
+    else
+      "Chat #{id}"
+    end
+  end
+
+  # Optionally auto-set name after first message is created
+  def set_name_from_first_message!
+    return if name.present? || messages.empty?
+
+    first_message = messages.where(role: "user").first
+    if first_message&.content.present?
+      update(name: first_message.content.strip[0..100]) # Limit to 100 chars
+    end
+  end
+
   def ask_with_context(user_message)
     context = build_context_from_messaging
 
