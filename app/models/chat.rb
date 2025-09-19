@@ -25,7 +25,9 @@ class Chat < ApplicationRecord
 
     first_message = messages.where(role: "user").first
     if first_message&.content.present?
-      update(name: first_message.content.strip[0..100]) # Limit to 100 chars
+      # content.split("User Question:", 2).last&.strip || content
+      # update(name: first_message.content.strip[0..100]) # Limit to 100 chars
+      update(name: first_message.content.split("User Question:", 2).last&.strip[0..100].titleize) # Limit to 100 chars
     end
   end
 
