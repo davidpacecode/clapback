@@ -4,7 +4,7 @@
     <h3 class="wa-heading-m">Topic Info</h3>
     <div class="wa-split">
       <div><p class="wa-caption-m">Details about our Company's perspective</p></div>
-      <div><%= button_to "Edit", topic %></div>
+      <div><%= button_to "Edit", edit_topic_path(topic), method: :get %></div>
     </div>
     <wa-divider></wa-divider>
     <dl class="wa-stack wa-gap-2xl">
