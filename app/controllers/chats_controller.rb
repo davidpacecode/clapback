@@ -17,14 +17,27 @@ class ChatsController < ApplicationController
   end
 
   def edit
+    @chat = Current.user.chats.find(params[:id])
   end
 
   def update
     @chat = Current.user.chats.find(params[:id])
-    user_message = params[:chat][:content]
-    # @topic = @chat.ask(user_message)
-    @topic = @chat.ask_with_context(user_message)
-    redirect_to @chat
+
+    # Check if this is a name update (for inline editing)
+    if params[:chat][:name].present?
+      if @chat.update(name: params[:chat][:name])
+        redirect_to @chat, notice: "Chat name updated!"
+      else
+        render :edit, status: :unprocessable_entity
+      end
+    # Otherwise, this is a new message
+    elsif params[:chat][:content].present?
+      user_message = params[:chat][:content]
+      @topic = @chat.ask_with_context(user_message)
+      redirect_to @chat
+    else
+      redirect_to @chat, alert: "No content provided"
+    end
   end
 
   def index

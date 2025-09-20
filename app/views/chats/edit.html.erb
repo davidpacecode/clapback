@@ -1,7 +1,14 @@
- <turbo-frame id="chat_name">
-    <form action="/messages/1">
-      <input name="message[name]" type="text" value="My message title">
-      <textarea name="message[content]">My message content</textarea>
-      <input type="submit">
-    </form>
-</turbo-frame>
+<%= turbo_frame_tag "chat_name" do %>
+  <%= form_with model: @chat, local: false do |form| %>
+    <div class="wa-cluster">
+      <%= form.text_field :name, 
+          value: @chat.display_name, 
+          class: "wa-input",
+          placeholder: "Chat name" %>
+      <%= form.submit "Save", class: "wa-button wa-button--primary wa-size-s" %>
+      <%= link_to "Cancel", @chat, 
+          data: { turbo_frame: "chat_name" }, 
+          class: "wa-button wa-button--ghost wa-size-s" %>
+    </div>
+  <% end %>
+<% end %>

@@ -1,8 +1,6 @@
-<turbo-frame id="chat_name">
-  <h1><%= @chat.display_name %></h1>
-  <%= link_to "Edit Chat Name", edit_chat_path(@chat) %>
-</turbo-frame>
-
+<%= turbo_frame_tag "chat_name" do %>
+  <%= render "chat_name", chat: @chat %>
+<% end %>
 
 <div class="wa-stack" style="max-width: 45ch; margin: 0 auto;">
   <div class="wa-stack">
