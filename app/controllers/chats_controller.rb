@@ -16,6 +16,9 @@ class ChatsController < ApplicationController
     @chat = Current.user.chats.find(params[:id])
   end
 
+  def edit
+  end
+
   def update
     @chat = Current.user.chats.find(params[:id])
     user_message = params[:chat][:content]
