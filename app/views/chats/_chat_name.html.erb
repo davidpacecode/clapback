@@ -1,0 +1,7 @@
+<div class="wa-cluster">
+  <h1><%= chat.display_name %></h1>
+  <%= link_to "Edit Chat Name", edit_chat_path(chat), 
+      data: { turbo_frame: "chat_name" }, 
+      class: "wa-button wa-button--outline wa-size-s" %>
+</div>
+
